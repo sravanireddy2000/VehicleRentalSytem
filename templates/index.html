@@ -1,26 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Rental System</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h2>RentWheels</h2>
-            </div>
-            <ul class="navigationLinks">
-                <li><a href="/" class="active">Home</a></li>
-                <li><a href="/vehicles">Vehicles</a></li>
-                <li><a href="/bookings">My Bookings</a></li>
-                <li><a href="/admin">Admin</a></li>
-            </ul>
+    
+    <div class="headerSection">
+        <h1>Vehicle Rental System</h1>
+        <div class="navBar">
+            <a href="/">Home</a>
+            <a href="/vehicles">Vehicles</a>
+            <a href="/bookings">Bookings</a>
+            <a href="/admin">Admin</a>
         </div>
-    </nav>
+    </div>
 
-    <script src="/static/js/main.js"></script>
+    <div class="mainContent">
+        
+        <div class="welcomeBox">
+            <h2>Welcome</h2>
+            <p>Rent a vehicle</p>
+        </div>
+
+        <div class="searchBox">
+            <h3>Search Vehicle</h3>
+            <form>
+                <label>Type:</label>
+                <select name="vehicleType">
+                    <option value="">Select</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                </select>
+                <br><br>
+                
+                <label>Start Date:</label>
+                <input type="date" name="startDate">
+                <br><br>
+                
+                <label>End Date:</label>
+                <input type="date" name="endDate">
+                <br><br>
+                
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
 </body>
 </html>
