@@ -6,15 +6,7 @@
 </head>
 <body>
     
-    <div class="headerSection">
-        <h1>Vehicle Rental System</h1>
-        <div class="navBar">
-            <a href="/">Home</a>
-            <a href="/vehicles">Vehicles</a>
-            <a href="/bookings">Bookings</a>
-            <a href="/admin">Admin</a>
-        </div>
-    </div>
+      {% include('./components/header.html') %}
 
     <div class="mainContent">
         
@@ -84,9 +76,7 @@
         </div>
 
     </div>
-    <div class="footerSection">
-        <p>Vehicle Rental System 2025</p>
-    </div>
+        {% include('./components/footer.html') %}
 
 </body>
 </html>
