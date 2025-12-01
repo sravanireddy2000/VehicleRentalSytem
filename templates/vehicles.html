@@ -5,6 +5,25 @@
 </head>
 <body>
     {% include('./components/header.html') %}
+     <div class="mainContent">
+        
+        <h2>All Vehicles</h2>
+
+        <div class="filterBox">
+            <h3>Filter Vehicles</h3>
+            <form method="GET" action="/vehicles">
+                <label>Type:</label>
+                <select name="vehicleType">
+                    <option value="">All Types</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                </select>
+                
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+     </div>
     {% include('./components/footer.html') %}
 </body>
 </html>
