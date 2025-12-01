@@ -120,3 +120,36 @@ table a {
 .footerSection p {
     margin: 0;
 }
+
+.filterBox {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filterBox h3 {
+    margin-top: 0;
+}
+
+.filterBox form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.filterBox label {
+    font-weight: bold;
+}
+
+.filterBox select {
+    padding: 5px;
+}
+
+.filterBox button {
+    padding: 8px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
