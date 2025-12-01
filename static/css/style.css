@@ -152,4 +152,18 @@ table a {
     border: none;
     cursor: pointer;
 }
+.vehicleCard {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
 
+.vehicleCard h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.vehicleCard p {
+    margin: 8px 0;
+}
