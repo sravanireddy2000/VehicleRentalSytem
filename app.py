@@ -31,7 +31,19 @@ def SubmitBooking():
    endDate = request.form['endDate']
    totalPrice = request.form['totalPrice']
    
+   bookingsCollection = rentalDatabase["bookings"]
    
+   bookingData = {
+       "customerName": customerName,
+       "customerEmail": customerEmail,
+       "customerPhone": customerPhone,
+       "startDate": startDate,
+       "endDate": endDate,
+       "totalPrice": totalPrice,
+       "status": "confirmed"
+   }
+   
+   bookingsCollection.insert_one(bookingData)
    
    return redirect('/bookings')
 
