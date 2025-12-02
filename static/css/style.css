@@ -176,3 +176,21 @@ table a {
     color: white;
     text-decoration: none;
 }
+
+/* for booking page */
+.bookingForm {
+    background-color: white;
+    padding: 30px;
+    max-width: 600px;
+}
+
+.bookingForm h3 {
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.bookingForm p {
+    margin: 10px 0;
+    font-size: 16px;
+}
