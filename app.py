@@ -17,12 +17,12 @@ def HomePage():
 def VehiclesPage():
    return render_template('vehicles.html')   
 
-@app.route('/booking')
+@app.route('/bookings')
 def BookingPage():
    return render_template('booking.html')
 
 
-@app.route('/booking', methods=['POST'])
+@app.route('/bookings', methods=['POST'])
 def SubmitBooking():
    customerName = request.form['customerName']
    customerEmail = request.form['customerEmail']
