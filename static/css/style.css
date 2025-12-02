@@ -194,3 +194,35 @@ table a {
     margin: 10px 0;
     font-size: 16px;
 }
+
+.bookingForm hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.bookingForm label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.bookingForm input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ddd;
+}
+
+.bookingForm button {
+    margin-top: 10px;
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.bookingForm button:hover {
+    background-color: #45a049;
+}
