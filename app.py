@@ -17,6 +17,11 @@ def HomePage():
 def VehiclesPage():
    return render_template('vehicles.html')   
 
+@app.route('/booking')
+def BookingPage():
+   return render_template('booking.html')
+
+
 if __name__ == '__main__':
    app.run(debug=True)
 
