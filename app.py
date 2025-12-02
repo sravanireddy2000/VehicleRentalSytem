@@ -9,7 +9,6 @@ rentalDatabase = client["rentalDatabase"]
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def HomePage():
    return render_template('index.html')
@@ -17,6 +16,7 @@ def HomePage():
 @app.route('/vehicles')
 def VehiclesPage():
    return render_template('vehicles.html')   
+
 if __name__ == '__main__':
    app.run(debug=True)
 
