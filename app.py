@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 from pymongo import MongoClient
 
 
@@ -21,6 +21,19 @@ def VehiclesPage():
 def BookingPage():
    return render_template('booking.html')
 
+
+@app.route('/booking', methods=['POST'])
+def SubmitBooking():
+   customerName = request.form['customerName']
+   customerEmail = request.form['customerEmail']
+   customerPhone = request.form['customerPhone']
+   startDate = request.form['startDate']
+   endDate = request.form['endDate']
+   totalPrice = request.form['totalPrice']
+   
+   
+   
+   return redirect('/bookings')
 
 if __name__ == '__main__':
    app.run(debug=True)
