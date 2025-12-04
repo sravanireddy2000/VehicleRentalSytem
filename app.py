@@ -1,3 +1,4 @@
+from bson import ObjectId
 from flask import Flask, render_template, redirect, request
 from pymongo import MongoClient
 
@@ -52,6 +53,12 @@ def BookingsPage():
    bookingsCollection = rentalDatabase["bookings"]
    allBookings = bookingsCollection.find()
    return render_template('bookings.html', bookings=allBookings)
+
+@app.route('/cancel/<bookingId>')
+def CancelBooking(bookingId):
+   bookingsCollection = rentalDatabase["bookings"]
+   bookingsCollection.delete_one({"_id": ObjectId(bookingId)})
+   return redirect('/bookings')
 
 if __name__ == '__main__':
    app.run(debug=True)
