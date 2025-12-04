@@ -5,10 +5,12 @@
 </head>
 <body>
     {% include('./components/header.html') %}
-       <div class="mainContent">
-           <h2>My Bookings</h2>
+        <div class="mainContent">
+        
+        <h2>My Bookings</h2>
 
         <div class="bookingsList">
+            
             <table border="1">
                 <tr>
                     <th>Booking ID</th>
@@ -21,9 +23,27 @@
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking._id }}</td>
+                    <td>{{ booking.customerName }}</td>
+                    <td>{{ booking.customerEmail }}</td>
+                    <td>{{ booking.customerPhone }}</td>
+                    <td>{{ booking.startDate }}</td>
+                    <td>{{ booking.endDate }}</td>
+                    <td>{{ booking.totalPrice }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        <a href="/cancel/{{ booking._id }}">Cancel</a>
+                    </td>
+                </tr>
+                {% endfor %}
             </table>
-       </div>
+
         </div>
+
+    </div>
+
     {% include('./components/footer.html') %}
 </body>
 </html>       
