@@ -18,7 +18,7 @@ def HomePage():
 def VehiclesPage():
    return render_template('vehicles.html')   
 
-@app.route('/bookings')
+@app.route('/booking')
 def BookingPage():
    return render_template('booking.html')
 

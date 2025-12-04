@@ -226,3 +226,31 @@ table a {
 .bookingForm button:hover {
     background-color: #45a049;
 }
+
+.bookingsList {
+    background-color: white;
+    padding: 20px;
+}
+
+.bookingsList table {
+    width: 100%;
+}
+
+.bookingsList th {
+    font-size: 14px;
+    padding: 12px 8px;
+}
+
+.bookingsList td {
+    font-size: 13px;
+    padding: 10px 8px;
+}
+.bookingsList a {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bookingsList a:hover {
+    text-decoration: underline;
+}
