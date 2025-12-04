@@ -47,6 +47,12 @@ def SubmitBooking():
    
    return redirect('/bookings')
 
+@app.route('/bookings')
+def BookingsPage():
+   bookingsCollection = rentalDatabase["bookings"]
+   allBookings = bookingsCollection.find()
+   return render_template('bookings.html', bookings=allBookings)
+
 if __name__ == '__main__':
    app.run(debug=True)
 
