@@ -1,0 +1,18 @@
+.bookingsList {
+    background-color: white;
+    padding: 20px;
+}
+
+.bookingsList table {
+    width: 100%;
+}
+
+.bookingsList th {
+    font-size: 14px;
+    padding: 12px 8px;
+}
+
+.bookingsList td {
+    font-size: 13px;
+    padding: 10px 8px;
+}
