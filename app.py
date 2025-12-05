@@ -89,6 +89,31 @@ def AdminPage():
    allVehicles = vehiclesCollection.find()
    return render_template('admin.html', vehicles=allVehicles)
 
+@app.route('/admin/add', methods=['POST'])
+def AddVehicle():
+   if 'logged_in' not in session:
+       return redirect('/login')
+   
+   brand = request.form['brand']
+   model = request.form['model']
+   vehicleType = request.form['type']
+   year = request.form['year']
+   pricePerDay = request.form['pricePerDay']
+   
+   vehiclesCollection = rentalDatabase["vehicles"]
+   
+   newVehicle = {
+       "brand": brand,
+       "model": model,
+       "type": vehicleType,
+       "year": int(year),
+       "pricePerDay": int(pricePerDay),
+       "available": True
+   }
+   
+   vehiclesCollection.insert_one(newVehicle)
+   return redirect('/admin')
+
 if __name__ == '__main__':
    app.run(debug=True)
 
