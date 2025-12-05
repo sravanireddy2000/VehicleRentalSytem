@@ -51,27 +51,27 @@
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
+                {% for vehicle in vehicles %}
                 <tr>
-                    <td>Toyota Camry</td>
-                    <td>Sedan</td>
-                    <td>5000000</td>
-                    <td>Available</td>
-                    <td><a href="#">Book</a></td>
+                    <td>{{ vehicle.brand }} {{ vehicle.model }}</td>
+                    <td>{{ vehicle.type }}</td>
+                    <td>{{ vehicle.pricePerDay }}</td>
+                    <td>
+                        {% if vehicle.available %}
+                        Available
+                        {% else %}
+                        Rented
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if vehicle.available %}
+                        <a href="/booking?id={{ vehicle._id }}">Book</a>
+                        {% else %}
+                        Not Available
+                        {% endif %}
+                    </td>
                 </tr>
-                <tr>
-                    <td>Honda CRV</td>
-                    <td>SUV</td>
-                    <td>7500000</td>
-                    <td>Available</td>
-                    <td><a href="#">Book</a></td>
-                </tr>
-                <tr>
-                    <td>Ford F150</td>
-                    <td>Truck</td>
-                    <td>900000</td>
-                    <td>Available</td>
-                    <td><a href="#">Book</a></td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
 
