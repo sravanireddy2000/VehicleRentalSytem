@@ -9,6 +9,43 @@ rentalDatabase = client["rentalDatabase"]
 
 app = Flask(__name__)
 
+@app.route('/add-sample-vehicles')
+def AddSampleVehicles():
+   vehiclesCollection = rentalDatabase["vehicles"]
+   
+   sampleVehicles = [
+       {
+           "brand": "Toyota",
+           "model": "Camry",
+           "type": "sedan",
+           "year": 2023,
+           "pricePerDay": 5000000,
+           "available": True,
+           "features": ["AC", "GPS", "Bluetooth"]
+       },
+       {
+           "brand": "Honda",
+           "model": "CRV",
+           "type": "suv",
+           "year": 2022,
+           "pricePerDay": 7500000,
+           "available": True,
+           "features": ["AC", "4WD", "Camera"]
+       },
+       {
+           "brand": "Mercedez",
+           "model": "S10",
+           "type": "suv",
+           "year": 2023,
+           "pricePerDay": 1000000,
+           "available": True,
+           "features": ["AC", "Comfortable","GPS"]
+       }
+   ]
+   
+   vehiclesCollection.insert_many(sampleVehicles)
+   return "Sample vehicles added!"
+
 
 @app.route('/')
 def HomePage():
