@@ -80,6 +80,15 @@ def LoginPage():
    return render_template('login.html')
 
 
+@app.route('/admin')
+def AdminPage():
+   if 'logged_in' not in session:
+       return redirect('/login')
+   
+   vehiclesCollection = rentalDatabase["vehicles"]
+   allVehicles = vehiclesCollection.find()
+   return render_template('admin.html', vehicles=allVehicles)
+
 if __name__ == '__main__':
    app.run(debug=True)
 
