@@ -1,5 +1,5 @@
 from bson import ObjectId
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request,session, jsonify
 from pymongo import MongoClient
 
 
@@ -9,42 +9,6 @@ rentalDatabase = client["rentalDatabase"]
 
 app = Flask(__name__)
 
-@app.route('/add-sample-vehicles')
-def AddSampleVehicles():
-   vehiclesCollection = rentalDatabase["vehicles"]
-   
-   sampleVehicles = [
-       {
-           "brand": "Toyota",
-           "model": "Camry",
-           "type": "sedan",
-           "year": 2023,
-           "pricePerDay": 5000000,
-           "available": True,
-           "features": ["AC", "GPS", "Bluetooth"]
-       },
-       {
-           "brand": "Honda",
-           "model": "CRV",
-           "type": "suv",
-           "year": 2022,
-           "pricePerDay": 7500000,
-           "available": True,
-           "features": ["AC", "4WD", "Camera"]
-       },
-       {
-           "brand": "Mercedez",
-           "model": "S10",
-           "type": "suv",
-           "year": 2023,
-           "pricePerDay": 1000000,
-           "available": True,
-           "features": ["AC", "Comfortable","GPS"]
-       }
-   ]
-   
-   vehiclesCollection.insert_many(sampleVehicles)
-   return "Sample vehicles added!"
 
 
 @app.route('/')
@@ -98,6 +62,23 @@ def CancelBooking(bookingId):
    bookingsCollection = rentalDatabase["bookings"]
    bookingsCollection.delete_one({"_id": ObjectId(bookingId)})
    return redirect('/bookings')
+
+@app.route('/login', methods=['GET', 'POST'])
+def LoginPage():
+   if request.method == 'POST':
+       login_details=request.get_json()
+       username=login_details.get('username')
+       password=login_details.get('password')
+
+       if username == 'admin' and password == 'admin123':
+           session['logged_in'] = True
+           session['username'] = username
+           return jsonify({"success":True})
+       else:
+           return jsonify({"success":False})
+   
+   return render_template('login.html')
+
 
 if __name__ == '__main__':
    app.run(debug=True)
