@@ -12,7 +12,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def HomePage():
-   return render_template('index.html')
+   vehiclesCollection = rentalDatabase["vehicles"]
+   allVehicles = vehiclesCollection.find()
+   return render_template('index.html', vehicles=allVehicles)
    
 @app.route('/vehicles')
 def VehiclesPage():
