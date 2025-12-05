@@ -2,12 +2,33 @@
 <head>
     <title>Admin Login - Vehicle Rental System</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/login.css">
 </head>
 <body>
     
     {% include('./components/header.html') %}
       <div class="mainContent">
-        
+               <div class="loginBox">
+            <h2>Admin Login</h2>
+            
+            {% if error %}
+            <p class="errorMessage">{{ error }}</p>
+            {% endif %}
+            
+            <form method="POST" action="/login">
+                <label>Username:</label>
+                <input type="text" name="username" required>
+                <br><br>
+                
+                <label>Password:</label>
+                <input type="password" name="password" required>
+                <br><br>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+    </div>
       </div>
     {% include('./components/footer.html') %}
 
