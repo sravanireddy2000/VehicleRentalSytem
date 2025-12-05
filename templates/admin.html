@@ -8,7 +8,41 @@
     {% include('./components/header.html') %}
 
     <div class="mainContent">
-        
+        <h2>Admin Panel</h2>
+        <a href="/logout">Logout</a>
+        <br><br>
+
+        <div class="adminSection">
+            <h3>Add Vehicle</h3>
+            <form method="POST" action="/admin/add">
+                <label>Brand:</label>
+                <input type="text" name="brand" required>
+                <br><br>
+                
+                <label>Model:</label>
+                <input type="text" name="model" required>
+                <br><br>
+                
+                <label>Type:</label>
+                <select name="type" required>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                </select>
+                <br><br>
+                
+                <label>Year:</label>
+                <input type="number" name="year" required>
+                <br><br>
+                
+                <label>Price:</label>
+                <input type="number" name="pricePerDay" required>
+                <br><br>
+                
+                <button type="submit">Add Vehicle</button>
+            </form>
+        </div>
+
     </div>
 
     {% include('./components/footer.html') %}
