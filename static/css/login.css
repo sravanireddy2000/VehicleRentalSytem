@@ -1,0 +1,55 @@
+.loginBox {
+    background-color: white;
+    padding: 40px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.loginBox h2 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.loginBox label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.loginBox input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ddd;
+}
+
+.loginBox button {
+    padding: 10px 30px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.loginBox button:hover {
+    background-color: #0b7dda;
+}
+
+.errorMessage {
+    color: red;
+    background-color: #ffebee;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid red;
+}
+
+.successMessage {
+    color: green;
+    background-color: #e8f5e9;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid green;
+}
