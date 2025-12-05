@@ -8,26 +8,23 @@
     
     {% include('./components/header.html') %}
       <div class="mainContent">
-               <div class="loginBox">
+          <div class="loginBox">
             <h2>Admin Login</h2>
             
-            {% if error %}
-            <p class="errorMessage">{{ error }}</p>
-            {% endif %}
+            <p id="messageBox"></p>
             
-            <form method="POST" action="/login">
+            <form id="loginForm">
                 <label>Username:</label>
-                <input type="text" name="username" required>
+                <input type="text" id="username" name="username" required>
                 <br><br>
                 
                 <label>Password:</label>
-                <input type="password" name="password" required>
+                <input type="password" id="password" name="password" required>
                 <br><br>
                 
                 <button type="submit">Login</button>
             </form>
         </div>
-
     </div>
       </div>
     {% include('./components/footer.html') %}
