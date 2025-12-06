@@ -25,4 +25,16 @@ document.getElementById('addForm').addEventListener('submit', function(e) {
             });
         });
         
+        function deleteVehicle(id) {
+            fetch('/admin/delete/' + id, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(result => {
+                if(result.success) {
+                    loadVehicles();
+                }
+            });
+        }
         
+       
