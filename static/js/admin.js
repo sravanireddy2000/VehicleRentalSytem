@@ -26,6 +26,8 @@ document.getElementById('addForm').addEventListener('submit', function(e) {
         });
         
         function deleteVehicle(id) {
+            if(!window.confirm('Are you sure you want to delete this vehicle!'))
+                return;
             fetch('/admin/delete/' + id, {
                 method: 'DELETE'
             })

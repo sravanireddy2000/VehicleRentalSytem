@@ -110,6 +110,16 @@ def AddVehicle():
    vehiclesCollection.insert_one(newVehicle)
    return jsonify({"success": True})
 
+@app.route('/admin/delete/<vehicleId>', methods=['DELETE'])
+def DeleteVehicle(vehicleId):
+   if 'logged_in' not in session:
+       return jsonify({"success": False})
+   
+   vehiclesCollection = rentalDatabase["vehicles"]
+   vehiclesCollection.delete_one({"_id": ObjectId(vehicleId)})
+   return jsonify({"success": True})
+
+
 if __name__ == '__main__':
    app.run(debug=True)
 
