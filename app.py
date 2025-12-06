@@ -120,7 +120,7 @@ def DeleteVehicle(vehicleId):
    return jsonify({"success": True})
 
 @app.route('/api/vehicles')
-def GetVehicles():
+def SearchVehicles():
    vehiclesCollection = rentalDatabase["vehicles"]
    
    searchText = request.args.get('search', '')

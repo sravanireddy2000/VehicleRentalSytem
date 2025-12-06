@@ -53,3 +53,20 @@
     margin-bottom: 20px;
     border: 1px solid green;
 }
+.loginTabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.loginTabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.loginTabs button:first-child {
+    background-color: #2196F3;
+    color: white;
+}
