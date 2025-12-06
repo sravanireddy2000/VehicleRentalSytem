@@ -43,7 +43,32 @@
             </form>
             <p id="message"></p>
         </div>
-
+     <div class="adminVehicleList">
+            <h3>All Vehicles</h3>
+            
+            <table border="1" id="vehicleTable">
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Year</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                {% for vehicle in vehicles %}
+                <tr>
+                    <td>{{ vehicle.brand }}</td>
+                    <td>{{ vehicle.model }}</td>
+                    <td>{{ vehicle.type }}</td>
+                    <td>{{ vehicle.year }}</td>
+                    <td>{{ vehicle.pricePerDay }}</td>
+                    <td>
+                        <a href="#" onclick="deleteVehicle('{{ vehicle._id }}')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 
     {% include('./components/footer.html') %}
