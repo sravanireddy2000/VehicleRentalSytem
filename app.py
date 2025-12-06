@@ -119,12 +119,35 @@ def DeleteVehicle(vehicleId):
    vehiclesCollection.delete_one({"_id": ObjectId(vehicleId)})
    return jsonify({"success": True})
 
-# @app.route('/search/<vehicleName>')
-# def SearchVehicle(vehicleName):
+@app.route('/api/vehicles')
+def SearchVehicles():
+   vehiclesCollection = rentalDatabase["vehicles"]
+   
+   searchText = request.args.get('search', '')
+   vehicleType = request.args.get('vehicleType', '')
+   maxPrice = request.args.get('maxPrice', '')
+   
+   query = {}
+   
+   if searchText:
+       query['$or'] = [
+           {'brand': {'$regex': searchText, '$options': 'i'}},
+           {'model': {'$regex': searchText, '$options': 'i'}}
+       ]
+   
+   if vehicleType:
+       query['type'] = vehicleType
+   
+   if maxPrice:
+       query['pricePerDay'] = {'$lte': int(maxPrice)}
+   
+   vehicles = list(vehiclesCollection.find(query))
+   
+   for v in vehicles:
+       v['_id'] = str(v['_id'])
+   
+   return jsonify(vehicles)
 
-#    vehiclesCollection = rentalDatabase["vehicles"]
-#    vehiclesCollection.find_one({"_id": ObjectId(vehicleId)})
-#    return jsonify({"success": True})
 
 if __name__ == '__main__':
    app.run(debug=True)
