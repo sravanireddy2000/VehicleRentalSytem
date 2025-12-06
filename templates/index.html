@@ -15,63 +15,63 @@
         </div>
 
         <div class="searchBox">
-            <h3>Search Vehicle</h3>
-            <form>
-                <label>Type:</label>
-                <select name="vehicleType">
-                    <option value="">Select</option>
-                    <option value="sedan">Sedan</option>
-                    <option value="suv">SUV</option>
-                    <option value="truck">Truck</option>
-                </select>
-                <br><br>
-                
-                <label>Start Date:</label>
-                <input type="date" name="startDate">
-                <br><br>
-                
-                <label>End Date:</label>
-                <input type="date" name="endDate">
-                <br><br>
-                
-                <button type="submit">Search</button>
-            </form>
-        </div>
+        <h3>Search Vehicle</h3>
+        <form method="GET" action="/">
+            <label>Type:</label>
+            <select name="vehicleType">
+            <option value="">Select</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="truck">Truck</option>
+            </select>
+            <br><br>
+            
+            <label>Search:</label>
+            <input type="text" name="search" placeholder="Brand or Model">
+            <br><br>
+            
+            <label>Max Price:</label>
+            <input type="number" name="maxPrice" placeholder="Price">
+            <br><br>
+            
+            <button type="submit">Search</button>
+        </form>
+    </div>
 
 
         <div class="vehicleList">
-            <h3>Available Vehicles</h3>
+        <h3>Available Vehicles</h3>
             
-            <table border="1">
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                {% for vehicle in vehicles %}
-                <tr>
-                    <td>{{ vehicle.brand }} {{ vehicle.model }}</td>
-                    <td>{{ vehicle.type }}</td>
-                    <td>{{ vehicle.pricePerDay }}</td>
-                    <td>
-                        {% if vehicle.available %}
-                        Available
-                        {% else %}
-                        Rented
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if vehicle.available %}
-                        <a href="/booking?id={{ vehicle._id }}">Book</a>
-                        {% else %}
-                        Not Available
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.brand }} {{ vehicle.model }}</td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.pricePerDay }}</td>
+                <td>
+                    {% if vehicle.available %}
+                    Available
+                    {% else %}
+                    Rented
+                    {% endif %}
+                </td>
+                <td>
+                    {% if vehicle.available %}
+                    <a href="/booking?id={{ vehicle._id }}">Book</a>
+                    {% else %}
+                    Not Available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
         </div>
 
     </div>
