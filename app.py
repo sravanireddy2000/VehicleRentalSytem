@@ -63,6 +63,22 @@ def CancelBooking(bookingId):
    bookingsCollection.delete_one({"_id": ObjectId(bookingId)})
    return redirect('/bookings')
 
+@app.route('/login', methods=['GET', 'POST'])
+def LoginPage():
+   if request.method == 'POST':
+       login_details=request.get_json()
+       username=login_details.get('username')
+       password=login_details.get('password')
+
+       if username == 'admin' and password == 'admin123':
+           session['logged_in'] = True
+           session['username'] = username
+           return jsonify({"success":True})
+       else:
+           return jsonify({"success":False})
+   
+   return render_template('login.html')
+
 @app.route('/login/admin', methods=['POST'])
 def AdminLogin():
    data = request.get_json()
@@ -75,7 +91,7 @@ def AdminLogin():
        return jsonify({"success": True})
    else:
        return jsonify({"success": False})
-
+   
 @app.route('/login/customer', methods=['POST'])
 def CustomerLogin():
    data = request.get_json()
@@ -168,6 +184,11 @@ def SearchVehicles():
            filteredVehicles.append(v)
    
    return jsonify(filteredVehicles)
+
+@app.route('/logout')
+def Logout():
+    session.clear()
+    return redirect('/login')
 
 if __name__ == '__main__':
    app.run(debug=True)

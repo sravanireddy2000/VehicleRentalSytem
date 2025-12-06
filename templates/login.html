@@ -2,49 +2,53 @@
 <html>
 <head>
     <title>Login - Vehicle Rental System</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+    <link rel="stylesheet" href="/static/css/login.css">
 </head>
 <body>
     {% include('./components/header.html') %}
-    <div class="mainContent">
+        <div class="mainContent">
         
-        <div class="loginBox">
+        <div class="loginContainer">
             <h2>Login</h2>
             
             <div class="loginTabs">
-                <button id="adminTab" onclick="showAdminLogin()">Admin Login</button>
-                <button id="customerTab" onclick="showCustomerLogin()">Customer Login</button>
+                <button class="tabButton active" id="adminTab" onclick="showAdminLogin()">Admin</button>
+                <button class="tabButton" id="customerTab" onclick="showCustomerLogin()">Customer</button>
             </div>
             
-            <p id="messageBox"></p>
+            <p id="messageBox" class="messageBox"></p>
             
-            <div id="adminLoginForm">
-                <h3>Admin Login</h3>
+            <div id="adminLoginForm" class="loginFormSection">
                 <form id="adminForm">
-                    <label>Username:</label>
-                    <input type="text" id="adminUsername" required>
-                    <br><br>
+                    <div class="formGroup">
+                        <label>Username:</label>
+                        <input type="text" id="adminUsername" required>
+                    </div>
                     
-                    <label>Password:</label>
-                    <input type="password" id="adminPassword" required>
-                    <br><br>
+                    <div class="formGroup">
+                        <label>Password:</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
                     
-                    <button type="submit">Login as Admin</button>
+                    <button type="submit" class="loginButton">Login</button>
                 </form>
             </div>
             
-            <div id="customerLoginForm" style="display: none;">
-                <h3>Customer Login</h3>
+            <div id="customerLoginForm" class="loginFormSection" style="display: none;">
                 <form id="customerForm">
-                    <label>Email:</label>
-                    <input type="email" id="customerEmail" required>
-                    <br><br>
+                    <div class="formGroup">
+                        <label>Email:</label>
+                        <input type="email" id="customerEmail" required>
+                    </div>
                     
-                    <label>Phone:</label>
-                    <input type="text" id="customerPhone" required>
-                    <br><br>
+                    <div class="formGroup">
+                        <label>Phone:</label>
+                        <input type="text" id="customerPhone" required>
+                    </div>
                     
-                    <button type="submit">Login as Customer</button>
+                    <button type="submit" class="loginButton">Login</button>
                 </form>
             </div>
 
