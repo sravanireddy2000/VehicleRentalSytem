@@ -6,7 +6,7 @@ body {
 }
 
 .headerSection {
-    background-color: #4f0909;
+    background-color: #337baf;
     color: white;
     padding: 20px;
     text-align: center;
@@ -115,6 +115,7 @@ table a {
     text-align: center;
     padding: 15px;
     margin-top: 30px;
+
 }
 
 .footerSection p {
