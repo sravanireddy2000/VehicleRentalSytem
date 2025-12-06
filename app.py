@@ -120,34 +120,40 @@ def DeleteVehicle(vehicleId):
    return jsonify({"success": True})
 
 @app.route('/api/vehicles')
-def SearchVehicles():
+def GetVehicles():
    vehiclesCollection = rentalDatabase["vehicles"]
    
    searchText = request.args.get('search', '')
    vehicleType = request.args.get('vehicleType', '')
    maxPrice = request.args.get('maxPrice', '')
    
-   query = {}
+   allVehicles = list(vehiclesCollection.find())
    
-   if searchText:
-       query['$or'] = [
-           {'brand': {'$regex': searchText, '$options': 'i'}},
-           {'model': {'$regex': searchText, '$options': 'i'}}
-       ]
+   filteredVehicles = []
    
-   if vehicleType:
-       query['type'] = vehicleType
+   for v in allVehicles:
+       match = True
+       
+       if searchText:
+           searchLower = searchText.lower()
+           brandLower = v['brand'].lower()
+           modelLower = v['model'].lower()
+           if searchLower not in brandLower and searchLower not in modelLower:
+               match = False
+       
+       if vehicleType:
+           if v['type'] != vehicleType:
+               match = False
+       
+       if maxPrice:
+           if v['pricePerDay'] > int(maxPrice):
+               match = False
+       
+       if match:
+           v['_id'] = str(v['_id'])
+           filteredVehicles.append(v)
    
-   if maxPrice:
-       query['pricePerDay'] = {'$lte': int(maxPrice)}
-   
-   vehicles = list(vehiclesCollection.find(query))
-   
-   for v in vehicles:
-       v['_id'] = str(v['_id'])
-   
-   return jsonify(vehicles)
-
+   return jsonify(filteredVehicles)
 
 if __name__ == '__main__':
    app.run(debug=True)
