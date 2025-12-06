@@ -36,5 +36,24 @@ document.getElementById('addForm').addEventListener('submit', function(e) {
                 }
             });
         }
-        
+         function loadVehicles() {
+            fetch('/api/vehicles')
+            .then(response => response.json())
+            .then(vehicles => {
+                var html = '<tr><th>Brand</th><th>Model</th><th>Type</th><th>Year</th><th>Price</th><th>Actions</th></tr>';
+                
+                vehicles.forEach(function(v) {
+                    html += '<tr>';
+                    html += '<td>' + v.brand + '</td>';
+                    html += '<td>' + v.model + '</td>';
+                    html += '<td>' + v.type + '</td>';
+                    html += '<td>' + v.year + '</td>';
+                    html += '<td>' + v.pricePerDay + '</td>';
+                    html += '<td><a href="#" onclick="deleteVehicle(\'' + v._id + '\')">Delete</a></td>';
+                    html += '</tr>';
+                });
+                
+                document.getElementById('vehicleTable').innerHTML = html;
+            });
+        }
        
