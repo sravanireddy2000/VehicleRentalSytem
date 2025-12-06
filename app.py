@@ -92,27 +92,23 @@ def AdminPage():
 @app.route('/admin/add', methods=['POST'])
 def AddVehicle():
    if 'logged_in' not in session:
-       return redirect('/login')
+       return jsonify({"success": False})
    
-   brand = request.form['brand']
-   model = request.form['model']
-   vehicleType = request.form['type']
-   year = request.form['year']
-   pricePerDay = request.form['pricePerDay']
+   data = request.get_json()
    
    vehiclesCollection = rentalDatabase["vehicles"]
    
    newVehicle = {
-       "brand": brand,
-       "model": model,
-       "type": vehicleType,
-       "year": int(year),
-       "pricePerDay": int(pricePerDay),
+       "brand": data['brand'],
+       "model": data['model'],
+       "type": data['type'],
+       "year": int(data['year']),
+       "pricePerDay": int(data['pricePerDay']),
        "available": True
    }
    
    vehiclesCollection.insert_one(newVehicle)
-   return redirect('/admin')
+   return jsonify({"success": True})
 
 if __name__ == '__main__':
    app.run(debug=True)
