@@ -37,42 +37,63 @@ def BookingPage():
    return render_template('booking.html', vehicle=vehicle)
 
 
-@app.route('/bookings', methods=['POST'])
+
+@app.route('/booking', methods=['POST'])
 def SubmitBooking():
-   customerName = request.form['customerName']
-   customerEmail = request.form['customerEmail']
-   customerPhone = request.form['customerPhone']
-   startDate = request.form['startDate']
-   endDate = request.form['endDate']
-   totalPrice = request.form['totalPrice']
+   data = request.get_json()
+   
+   vehicleId = data.get('vehicleId')
+   customerName = data.get('customerName')
+   customerEmail = data.get('customerEmail')
+   customerPhone = data.get('customerPhone')
+   startDate = data.get('startDate')
+   endDate = data.get('endDate')
+   totalDays = data.get('totalDays')
+   totalPrice = data.get('totalPrice')
    
    bookingsCollection = rentalDatabase["bookings"]
    
    bookingData = {
+       "vehicleId": ObjectId(vehicleId),
        "customerName": customerName,
        "customerEmail": customerEmail,
        "customerPhone": customerPhone,
        "startDate": startDate,
        "endDate": endDate,
-       "totalPrice": totalPrice,
+       "totalDays": int(totalDays),
+       "totalPrice": int(totalPrice),
        "status": "confirmed"
    }
    
    bookingsCollection.insert_one(bookingData)
    
-   return redirect('/bookings')
+   return jsonify({"success": True})
+
 
 @app.route('/bookings')
 def BookingsPage():
+   if 'customerLoggedIn' not in session:
+       return redirect('/login')
+   
+   customerEmail = session.get('customerEmail')
+   customerPhone = session.get('customerPhone')
+   
    bookingsCollection = rentalDatabase["bookings"]
-   allBookings = bookingsCollection.find()
-   return render_template('bookings.html', bookings=allBookings)
+   
+   userBookings = bookingsCollection.find({
+       "customerEmail": customerEmail,
+       "customerPhone": customerPhone
+   })
+   
+   return render_template('bookings.html', bookings=userBookings,email=customerEmail)
+
 
 @app.route('/cancel/<bookingId>')
 def CancelBooking(bookingId):
    bookingsCollection = rentalDatabase["bookings"]
    bookingsCollection.delete_one({"_id": ObjectId(bookingId)})
    return redirect('/bookings')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def LoginPage():
@@ -113,9 +134,9 @@ def CustomerLogin():
    booking = bookingsCollection.find_one({"customerEmail": email, "customerPhone": phone})
    
    if booking:
-       session['customer_logged_in'] = True
-       session['customer_email'] = email
-       session['customer_phone'] = phone
+       session['customerLoggedIn'] = True
+       session['customerEmail'] = email
+       session['customerPhone'] = phone
        return jsonify({"success": True})
    else:
        return jsonify({"success": False, "error": "No bookings found"})

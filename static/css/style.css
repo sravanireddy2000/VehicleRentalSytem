@@ -15,7 +15,19 @@ body {
 .headerSection h1 {
     margin: 0;
 }
-
+.adminSection
+{
+    color: white;
+}
+.adminVehicleList
+{
+    color: white;
+}
+.vehicleTable
+{
+    color: white;
+    background-color: red;
+}
 .navBar {
     margin-top: 15px;
 }
@@ -81,7 +93,13 @@ body {
 .vehicleList h3 {
     margin-top: 0;
 }
-
+.submitButton{
+       padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 table {
     width: 100%;
     border-collapse: collapse;

@@ -1,4 +1,4 @@
-        var pricePerDay = parseInt(document.getElementById('priceValue').value);
+        const pricePerDay = parseInt(document.getElementById('priceValue').value);
         
         document.getElementById('startDate').addEventListener('change', calculateTotal);
         document.getElementById('endDate').addEventListener('change', calculateTotal);
@@ -11,12 +11,12 @@
                 var start = new Date(startDate);
                 var end = new Date(endDate);
                 
-                var timeDiff = end - start;
-                var daysDiff = timeDiff / (1000 * 3600 * 24);
+                var timeDifference = end - start;
+                var daysDifference = timeDifference / (1000 * 3600 * 24);
                 
-                if(daysDiff > 0) {
-                    document.getElementById('totalDays').value = daysDiff;
-                    document.getElementById('totalPrice').value = daysDiff * pricePerDay;
+                if(daysDifference > 0) {
+                    document.getElementById('totalDays').value = daysDifference;
+                    document.getElementById('totalPrice').value = daysDifference * pricePerDay;
                 } else {
                     document.getElementById('totalDays').value = 0;
                     document.getElementById('totalPrice').value = 0;
@@ -55,9 +55,6 @@
             .then(data => {
                 if(data.success) {
                     document.getElementById('message').innerHTML = '<span style="color: green;">Booking successful!</span>';
-                    setTimeout(function() {
-                        window.location.href = '/';
-                    }, 1500);
                 } else {
                     document.getElementById('message').innerHTML = '<span style="color: red;">' + data.error + '</span>';
                 }
