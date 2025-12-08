@@ -23,7 +23,18 @@ def VehiclesPage():
 
 @app.route('/booking')
 def BookingPage():
-   return render_template('booking.html')
+   vehicleId = request.args.get('id')
+   
+   if not vehicleId:
+       return redirect('/vehicles')
+   
+   vehiclesCollection = rentalDatabase["vehicles"]
+   vehicle = vehiclesCollection.find_one({"_id": ObjectId(vehicleId)})
+   
+   if not vehicle:
+       return redirect('/vehicles')
+   
+   return render_template('booking.html', vehicle=vehicle)
 
 
 @app.route('/bookings', methods=['POST'])

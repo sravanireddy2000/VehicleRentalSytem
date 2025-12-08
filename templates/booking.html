@@ -9,45 +9,48 @@
         
         <h2 style="color: aliceblue;">Book a Vehicle</h2>
          <div class="bookingForm">
-            <h3>Vehicle Details</h3>
-            <p><strong>Vehicle:</strong> Toyota Camry</p>
-            <p><strong>Type:</strong> Sedan</p>
-            <p><strong>Price:</strong> 5000000/day</p>
+           <h3>Vehicle Details</h3>
+            <p><strong>Vehicle:</strong> <span id="vehicleName">{{ vehicle.brand }} {{ vehicle.model }}</span></p>
+            <p><strong>Type:</strong> <span id="vehicleType">{{ vehicle.type }}</span></p>
+            <p><strong>Price:</strong> <span id="pricePerDay">{{ vehicle.pricePerDay }}</span>/day</p>
             
             <hr>
-               <h3>Customer Information</h3>
-            <form method="POST" action="/booking">
+          <h3>Customer Information</h3>
+            <form id="bookingForm">
+                <input type="hidden" id="vehicleId" value="{{ vehicle._id }}">
+                <input type="hidden" id="priceValue" value="{{ vehicle.pricePerDay }}">
                 
                 <label>Full Name:</label>
-                <input type="text" name="customerName" required>
+                <input type="text" id="customerName" required>
                 <br><br>
                 
                 <label>Email:</label>
-                <input type="email" name="customerEmail" required>
+                <input type="email" id="customerEmail" required>
                 <br><br>
                 
                 <label>Phone:</label>
-                <input type="text" name="customerPhone" required>
+                <input type="text" id="customerPhone" required>
                 <br><br>
                 
                 <label>Start Date:</label>
-                <input type="date" name="startDate" required>
+                <input type="date" id="startDate" required>
                 <br><br>
                 
                 <label>End Date:</label>
-                <input type="date" name="endDate" required>
+                <input type="date" id="endDate" required>
                 <br><br>
                 
                 <label>Total Days:</label>
-                <input type="number" name="totalDays" value="1" readonly>
+                <input type="number" id="totalDays" value="0" readonly>
                 <br><br>
                 
                 <label>Total Price:</label>
-                <input type="text" name="totalPrice" value="5000000" readonly>
+                <input type="text" id="totalPrice" value="0" readonly>
                 <br><br>
                 
                 <button type="submit">Confirm Booking</button>
             </form>
+            <p id="message"></p>
          </div>
        </div>
     {% include('./components/footer.html') %}
